@@ -7,7 +7,7 @@ const Typography = ({ text }: TypographyProps) => {
   return <section>
     <Heading text={text} level={1} />
     <Heading text={text} level={2} />
-    <p className="text-normal">{text}</p>
+    <p>{text}</p>
   </section>
 };
 

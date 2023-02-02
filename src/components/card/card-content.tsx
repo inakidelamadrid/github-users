@@ -1,2 +1,5 @@
+interface CardContentProps {
+  children: React.ReactNode;
+}
 
-export const CardContent = () => <div>CardContent</div>;
+export const CardContent = ({children}:CardContentProps) => <div>{children}</div>;
