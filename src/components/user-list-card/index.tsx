@@ -1,5 +1,6 @@
 import { Card } from "components/card";
 import { CardAvatarProps } from "components/card/card-avatar";
+import { ReactComponent as Github } from 'icons/iconmonstr-github-1.svg';
 
 interface UserListCardProps {
 	avatar: Pick<CardAvatarProps, "src" | "alt">;
@@ -16,14 +17,14 @@ export const UserListCard = ({ avatar, containerClassName="", login, htmlUrl }: 
 				  <Card.Avatar {...avatar} variant="normal" />
 					<div className="">{login}</div>
 				</div>
-        <div className="flex">
+        <div className="flex pl-2">
 					<a
 						href={htmlUrl}
 						target="_blank"
 						rel="noreferrer"
 						className="text-sm text-cyan-300"
 					>
-						Github
+						<Github className="w-4 h-4 fill-black" />
 					</a>
 					<a
 						href={htmlUrl}
