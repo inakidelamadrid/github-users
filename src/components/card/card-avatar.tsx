@@ -1,5 +1,6 @@
 import {clsx} from 'clsx';
-interface CardAvatarProps {
+
+export interface CardAvatarProps {
   src: string;
   alt: string;
   variant?: 'normal' | 'large';
