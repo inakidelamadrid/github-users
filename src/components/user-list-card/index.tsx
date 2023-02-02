@@ -3,13 +3,14 @@ import { CardAvatarProps } from "components/card/card-avatar";
 
 interface UserListCardProps {
 	avatar: Pick<CardAvatarProps, "src" | "alt">;
+  containerClassName?: string;
 	login: string;
 	htmlUrl: string;
 }
 
-export const UserListCard = ({ avatar, login, htmlUrl }: UserListCardProps) => {
+export const UserListCard = ({ avatar, containerClassName="", login, htmlUrl }: UserListCardProps) => {
 	return (
-		<Card>
+		<Card className={containerClassName}>
 			<div className="flex flex-col gap-y-5">
 				<div className="flex items-center gap-x-2">
 				  <Card.Avatar {...avatar} variant="normal" />
