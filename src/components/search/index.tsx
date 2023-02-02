@@ -17,6 +17,7 @@ export function Search({ placeholder, value = "", onChange }: SearchProps) {
 
   const onFocusHandler = () => setIsFocused(true);
   const onBlurHandler = () => setIsFocused(false);
+
 	return (
 		<div className="border-2 border-gray-100 rounded p-2 flex gap-x-2">
       <Magnifier className={clsx("w-6 h-6", {'fill-cyan-300': isFocused})} />
@@ -26,7 +27,6 @@ export function Search({ placeholder, value = "", onChange }: SearchProps) {
 				className="outline-none text-sm w-full grow-1"
 				placeholder={placeholder}
 				onChange={onChangeHandler}
-        // add a focus handler
         onFocus={onFocusHandler}
         onBlur={onBlurHandler}
 			/>
