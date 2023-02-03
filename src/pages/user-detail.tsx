@@ -3,6 +3,8 @@ import { useQuery } from "react-query";
 import { UserDetailCard } from "components/user-detail-card";
 import { useParams } from "react-router-dom";
 
+const withHttp = (url:string) => !/^https?:\/\//i.test(url) ? `http://${url}` : url;
+
 export default function UserDetail() {
 	const { id: login } = useParams();
 	const apiUrl = `https://api.github.com/users/${login}`;
@@ -27,7 +29,7 @@ export default function UserDetail() {
 				htmlUrl={user.html_url}
 				login={user.login}
         bio={user.bio ?? ''}
-        blogUrl={user.blog ?? ''}
+        blogUrl={user.blog ? withHttp(user.blog) : ''}
         email={user.email ?? ''}
         following={user.following}
         location={user.location ?? ''}
