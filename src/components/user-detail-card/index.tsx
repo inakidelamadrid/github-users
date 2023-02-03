@@ -10,6 +10,17 @@ import { ReactComponent as LinkIcon } from "icons/iconmonstr-link-thin.svg";
 import { ReactComponent as LocationIcon } from "icons/iconmonstr-location-2.svg";
 
 const buildTwitterUrl = (username: string) => `https://twitter.com/${username}`;
+
+const getIconLinkOrDisabled = (icon: JSX.Element, url?: string, ) => {
+	return !!url ? (
+		<a target="_blank" rel="noreferrer" href={url}>
+			<LabeledIcon icon={icon} label={url} />
+		</a>
+	) : (
+		<LabeledIcon icon={icon} label="Not available" />
+	);
+};
+
 interface UserDetailCardProps {
 	avatar: Pick<CardAvatarProps, "src" | "alt">;
 	htmlUrl: string;
@@ -72,22 +83,15 @@ export const UserDetailCard = ({
 						{location && (
 							<LabeledIcon icon={<LocationIcon />} label={location} />
 						)}
-						{email && <a href={`mailto:${email}`}><LabeledIcon icon={<Mail />} label={email} /></a>}
+						{email ? (
+							<a href={`mailto:${email}`}>
+								<LabeledIcon icon={<Mail />} label={email} />
+							</a>
+						) : (<LabeledIcon icon={<Mail />} label="Not available" />)}
 					</div>
 					<div className="flex flex-col space-y-4">
-						{twitterUsername && (
-              <a target="_blank" rel="noreferrer" href={buildTwitterUrl(twitterUsername)}>
-							<LabeledIcon
-								icon={<Twitter className="fill-blue-500" />}
-								label={twitterUsername}
-							/>
-              </a>
-						)}
-						{blogUrl && (
-							<a target="_blank" rel="noreferrer" href={blogUrl}>
-								<LabeledIcon icon={<LinkIcon />} label={blogUrl} />
-							</a>
-						)}
+						{getIconLinkOrDisabled(<Twitter className="fill-blue-500" />, twitterUsername ? buildTwitterUrl(twitterUsername) : undefined)}
+						{getIconLinkOrDisabled(<LinkIcon />, blogUrl)}
 					</div>
 				</div>
 			</div>
