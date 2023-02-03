@@ -27,14 +27,13 @@ export const UserListCard = ({ avatar, containerClassName="", login, htmlUrl }: 
 						<Github className="w-4 h-4 fill-black" />
 					</a>
 					<a
-						href={htmlUrl}
+						href={`/${login}`}
 						target="_blank"
 						rel="noreferrer"
 						className="text-sm text-cyan-300 ml-auto"
 					>
 						View profile
 					</a>
-
         </div>
 			</div>
 		</Card>
