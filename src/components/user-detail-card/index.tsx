@@ -1,6 +1,7 @@
 import { Card } from "components/card";
 import { CardAvatarProps } from "components/card/card-avatar";
 import { Heading } from "components/typography/headings";
+import { LabeledIcon } from "components/labeled-icon";
 import { CountInfo } from "./count-info";
 import { ReactComponent as Github } from "icons/iconmonstr-github-1.svg";
 import { ReactComponent as Twitter } from "icons/iconmonstr-twitter-1.svg";
@@ -56,11 +57,10 @@ export const UserDetailCard = ({
 								href={htmlUrl}
 								target="_blank"
 								rel="noreferrer"
-								className="text-sm text-cyan-300"
+								className="text-sm"
 							>
-								<Github className="w-6 h-6 fill-black" />
+                <LabeledIcon icon={<Github/>} label={login}/>
 							</a>
-							<span>{login}</span>
 						</div>
             <div className="flex bg-gray-100 mt-4 py-4 px-8 max-w-fit space-x-8 rounded-xl">
               <CountInfo count={publicRepos} label="Repos" />
@@ -68,33 +68,16 @@ export const UserDetailCard = ({
               <CountInfo count={following} label="Following" />
             </div>
 					</div>
-					<div>
-            {location && <p><LocationIcon/>{location}</p>}
-            {email && <p><Mail/>{email}</p>}
+					<div className="flex flex-col space-y-4">
+            {location && <LabeledIcon icon={<LocationIcon/>} label={location}/>}
+            {email && <LabeledIcon icon={<Mail/>} label={email}/>}
           </div>
-					<div>
-            {twitterUsername && <p><Twitter/>{twitterUsername}</p>}
-            {blogUrl && <p><LinkIcon/>{blogUrl}</p>}
+					<div className="flex flex-col space-y-4">
+            {twitterUsername && <LabeledIcon icon={<Twitter className="fill-blue-500" />} label={twitterUsername}/>}
+            {blogUrl && <LabeledIcon icon={<LinkIcon/>} label={blogUrl}/>}
           </div>
 				</div>
 			</div>
 		</Card>
 	);
 };
-
-// <a
-// 	href={htmlUrl}
-// 	target="_blank"
-// 	rel="noreferrer"
-// 	className="text-sm text-cyan-300"
-// >
-// 	<Github className="w-4 h-4 fill-black" />
-// </a>
-// <a
-// 	href={htmlUrl}
-// 	target="_blank"
-// 	rel="noreferrer"
-// 	className="text-sm text-cyan-300 ml-auto"
-// >
-// 	View profile
-// </a>
