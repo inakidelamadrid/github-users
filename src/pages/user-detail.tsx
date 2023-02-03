@@ -1,17 +1,20 @@
 import type { User } from "@saber2pr/types-github-api";
 import { useQuery } from "react-query";
-import { Heading } from "components/typography/headings";
 import { UserDetailCard } from "components/user-detail-card";
 import { useParams } from "react-router-dom";
 
 export default function UserDetail() {
 	const { id: login } = useParams();
 	const apiUrl = `https://api.github.com/users/${login}`;
-	const response = useQuery("userDetail", () =>
+	const response = useQuery(["userDetail", login], () =>
 		fetch(apiUrl).then((res) => res.json())
 	);
 	const user: User = response.data;
 	const placeholderAvatar = "https://via.placeholder.com/150";
+
+  if (!user) {
+    return <div>loading...</div>
+  }
 
 	return (
 		<div>

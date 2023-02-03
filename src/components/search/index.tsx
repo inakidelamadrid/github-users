@@ -20,8 +20,8 @@ export function Search({ className="", placeholder, value = "", onChange }: Sear
   const onBlurHandler = () => setIsFocused(false);
 
 	return (
-		<div className={clsx(className, "border-2 border-gray-100 rounded p-2 flex gap-x-2")}>
-      <Magnifier className={clsx("w-6 h-6", {'fill-cyan-300': isFocused})} />
+		<div className={clsx(className, "border-2 rounded p-2 flex gap-x-2", {"border-gray-100": !isFocused, "border-cyan-300": isFocused})}>
+      <Magnifier className="w-6 h-6"/>
 			<input
 				value={value}
 				type="text"
