@@ -9,7 +9,7 @@ import { ReactComponent as Mail } from "icons/iconmonstr-mail-thin.svg";
 import { ReactComponent as LinkIcon } from "icons/iconmonstr-link-thin.svg";
 import { ReactComponent as LocationIcon } from "icons/iconmonstr-location-2.svg";
 
-
+const buildTwitterUrl = (username: string) => `https://twitter.com/${username}`;
 interface UserDetailCardProps {
 	avatar: Pick<CardAvatarProps, "src" | "alt">;
 	htmlUrl: string;
@@ -21,9 +21,9 @@ interface UserDetailCardProps {
 	location?: string;
 	name?: string;
 	twitterUsername?: string;
-  publicRepos: number;
-  followers: number;
-  following: number;
+	publicRepos: number;
+	followers: number;
+	following: number;
 }
 
 export const UserDetailCard = ({
@@ -37,9 +37,9 @@ export const UserDetailCard = ({
 	location,
 	name,
 	twitterUsername,
-  publicRepos,
-  followers,
-  following,
+	publicRepos,
+	followers,
+	following,
 }: UserDetailCardProps) => {
 	return (
 		<Card className={containerClassName}>
@@ -49,7 +49,7 @@ export const UserDetailCard = ({
 					<div className="flex flex-col space-y-4">
 						{name && <Heading level={2} text={name}></Heading>}
 						<p>{login}</p>
-						{bio && <p>{bio}</p>}
+						{bio && <p className="font-sans">{bio}</p>}
 					</div>
 					<div>
 						<div className="flex items-center gap-x-2">
@@ -59,23 +59,36 @@ export const UserDetailCard = ({
 								rel="noreferrer"
 								className="text-sm"
 							>
-                <LabeledIcon icon={<Github/>} label={login}/>
+								<LabeledIcon icon={<Github />} label={login} />
 							</a>
 						</div>
-            <div className="flex bg-gray-100 mt-4 py-4 px-8 max-w-fit space-x-8 rounded-xl">
-              <CountInfo count={publicRepos} label="Repos" />
-              <CountInfo count={followers} label="Followers" />
-              <CountInfo count={following} label="Following" />
-            </div>
+						<div className="flex bg-gray-100 mt-4 py-4 px-8 max-w-fit space-x-8 rounded-xl">
+							<CountInfo count={publicRepos} label="Repos" />
+							<CountInfo count={followers} label="Followers" />
+							<CountInfo count={following} label="Following" />
+						</div>
 					</div>
 					<div className="flex flex-col space-y-4">
-            {location && <LabeledIcon icon={<LocationIcon/>} label={location}/>}
-            {email && <LabeledIcon icon={<Mail/>} label={email}/>}
-          </div>
+						{location && (
+							<LabeledIcon icon={<LocationIcon />} label={location} />
+						)}
+						{email && <a href={`mailto:${email}`}><LabeledIcon icon={<Mail />} label={email} /></a>}
+					</div>
 					<div className="flex flex-col space-y-4">
-            {twitterUsername && <LabeledIcon icon={<Twitter className="fill-blue-500" />} label={twitterUsername}/>}
-            {blogUrl && <LabeledIcon icon={<LinkIcon/>} label={blogUrl}/>}
-          </div>
+						{twitterUsername && (
+              <a target="_blank" rel="noreferrer" href={buildTwitterUrl(twitterUsername)}>
+							<LabeledIcon
+								icon={<Twitter className="fill-blue-500" />}
+								label={twitterUsername}
+							/>
+              </a>
+						)}
+						{blogUrl && (
+							<a target="_blank" rel="noreferrer" href={blogUrl}>
+								<LabeledIcon icon={<LinkIcon />} label={blogUrl} />
+							</a>
+						)}
+					</div>
 				</div>
 			</div>
 		</Card>

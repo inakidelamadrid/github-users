@@ -8,8 +8,8 @@ interface CountInfoProps {
 export const CountInfo = ({ count, label }: CountInfoProps) => {
 	return (
 		<div className="flex flex-col items-center">
-			<Heading level={2} text={label} />
-			<p>{count}</p>
+			<Heading className="text-gray-800" level={2} text={label} />
+			  <p className="text-2xl">{count}</p>
 		</div>
 	);
 };
